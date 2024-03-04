@@ -11,10 +11,23 @@ using System.Windows.Input;
 
 namespace ExamifyX.ViewModel
 {
-	public class ExamViewModel : INotifyPropertyChanged
-	{ 
+	public class ExamsPanelViewModel : INotifyPropertyChanged
+	{
+		public event Action OnRequestBack;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+		public ICommand BackCommand { get; }
+
+        public ExamsPanelViewModel()
+        {
+			BackCommand = new RelayCommand(BackFunction);
+        }
+
+		private void BackFunction()
+		{
+			OnRequestBack?.Invoke();
+		}
+
+		public event PropertyChangedEventHandler? PropertyChanged;
 
 		protected virtual void OnPropertyChanged(string propertyName)
 		{

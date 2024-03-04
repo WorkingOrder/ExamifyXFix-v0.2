@@ -24,7 +24,7 @@ namespace ExamifyX.View
 		public ExamCreationView()
 		{
 			InitializeComponent();
-			this.DataContext = new ExamViewModel();
+			this.DataContext = new ExamsPanelViewModel();
 		}
 	}
 }

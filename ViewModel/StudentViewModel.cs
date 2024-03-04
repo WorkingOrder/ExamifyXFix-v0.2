@@ -51,14 +51,20 @@ namespace ExamifyX.ViewModel
 		{
 			var studentMainMenuViewModel = new StudentMainMenuViewModel(_userService, _loginService);
 			studentMainMenuViewModel.LogOutRequested += () => OnLogoutRequested?.Invoke(this, EventArgs.Empty);
-			studentMainMenuViewModel.TakeExamRequested += SwitchToTakingExamView;
+			studentMainMenuViewModel.TakeExamRequested += SwitchToExamPanelView;
 			CurrentView = new StudentMainMenuView(_userService,_loginService) { DataContext = studentMainMenuViewModel };
 		}
 
-		private void SwitchToTakingExamView()
+		private void SwitchToExamPanelView()
 		{
-			var examViewModel = new ExamViewModel();
-			CurrentView = new TakeExamView { DataContext = examViewModel };
+			var examPanelViewModel = new ExamsPanelViewModel();
+			examPanelViewModel.OnRequestBack += HandleNavigateBack;
+			CurrentView = new TakeExamView { DataContext = examPanelViewModel };
+		}
+
+		private void HandleNavigateBack()
+		{
+			UpdateCurrentViewToMainMenu();
 		}
 
 		private void MainMenuViewModel_LogOutRequested()

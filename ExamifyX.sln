@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamifyX", "ExamifyX.csproj", "{FC79C728-7096-4C33-AA07-7170931A199B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC79C728-7096-4C33-AA07-7170931A199B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC79C728-7096-4C33-AA07-7170931A199B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC79C728-7096-4C33-AA07-7170931A199B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC79C728-7096-4C33-AA07-7170931A199B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2ED6D08-1093-4457-B0CF-39AEA8711308}
+	EndGlobalSection
+EndGlobal

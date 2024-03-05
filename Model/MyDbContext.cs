@@ -12,8 +12,15 @@ namespace ExamifyX.Model
 		public DbSet<User> Users { get; set; }
 		public DbSet<Teacher> Teachers { get; set; }
 		public DbSet<Student> Students { get; set; }
+		public DbSet<Exam> Exams { get; set; }
+		public DbSet<Question> Questions { get; set; }
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
+        {
+            
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ExamifyXDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
 		}

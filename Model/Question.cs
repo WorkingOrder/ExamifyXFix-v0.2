@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ExamifyX.Model
 {
+
+
 	public enum Option
 	{
+		None,
 		A,
 		B,
 		C,
@@ -16,6 +20,9 @@ namespace ExamifyX.Model
 	}
 	public class Question : INotifyPropertyChanged
 	{
+		[Key]
+		public int Id { get; set; }
+
 		private Option _correctOption;
 		private string? _questionText;
 		private string? _optionA;
@@ -96,5 +103,10 @@ namespace ExamifyX.Model
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
-    }
+
+		public bool HasCorrectAnswer()
+		{
+			return CorrectOption != Option.None;
+		}
+	}
 }

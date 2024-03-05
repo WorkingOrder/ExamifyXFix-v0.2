@@ -16,9 +16,9 @@
         <Label Content="Duration:" Canvas.Left="611" Canvas.Top="15"/>
         <TextBox x:Name="Timer" Text="{Binding ExamDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25" Width="100" Margin="672,15,28,410"/>
         <TextBox x:Name="QuestionBox" Text="{Binding CurrentQuestion.QuestionText}"  Height="150" Width="600" Margin="146,68,54,232"/>
-        <Button x:Name="AddBtn" Command="{Binding AddQuestionCommand}" Width="100" Height="25" Content="Add Question" Margin="17,175,683,250"/>
-        <Button x:Name="RemoveBtn" Command="{Binding RemoveQuestionCommand}" IsEnabled="{Binding CanRemoveQuestion}" Width="100" Height="25" Content="Remove Question" Margin="17,205,683,220"/>
-        <Button x:Name="BackBtn" Command="{Binding BackCommand}" Width="100" Height="25" Content="Back" Margin="17,235,683,190"/>
+        <Button x:Name="AddBtn" Command="{Binding AddQuestionCommand}" Width="100" Height="26" Content="Add Question" Canvas.Left="278" Canvas.Top="373"/>
+        <Button x:Name="RemoveBtn" Command="{Binding RemoveQuestionCommand}" IsEnabled="{Binding CanRemoveQuestion}" Width="100" Height="26" Content="Remove Question" Canvas.Left="383" Canvas.Top="373"/>
+        <Button x:Name="BackBtn" Command="{Binding BackCommand}" Width="100" Height="26" Content="Back" Canvas.Left="488" Canvas.Top="373" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <RadioButton x:Name="RadioA" IsChecked="{Binding Path=CurrentQuestion.CorrectOption, Converter={StaticResource EnumBooleanConverter}, ConverterParameter={x:Static model:Option.A}}" Canvas.Left="152" Canvas.Top="260"/>
         <TextBox x:Name="OptionA" Width="250" Height="25" Text="{Binding CurrentQuestion.OptionA, UpdateSourceTrigger=PropertyChanged}" Margin="172,254,378,171"/>
         <RadioButton x:Name="RadioB" IsChecked="{Binding Path=CurrentQuestion.CorrectOption, Converter={StaticResource EnumBooleanConverter}, ConverterParameter={x:Static model:Option.B}}" Canvas.Left="432" Canvas.Top="260" RenderTransformOrigin="0.511,0.571" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -29,6 +29,22 @@
         <TextBox x:Name="OptionD" Width="250" Height="25" Text="{Binding CurrentQuestion.OptionD, UpdateSourceTrigger=PropertyChanged}" Margin="452,295,98,130"/>
         <Button x:Name="PrevBtn" Command="{Binding PreviousQuestionCommand}" IsEnabled="{Binding CanGoToPreviousQuestion}" Width="75" Height="25" Content="Previous" Canvas.Left="357" Canvas.Top="338"/>
         <Button x:Name="NextBtn" Command="{Binding NextQuestionCommand}" IsEnabled="{Binding CanGoToNextQuestion}" Width="75" Height="25" Content="Next" Canvas.Left="437" Canvas.Top="338"/>
-        <TextBlock x:Name="QuestionCounter" Text="{Binding QuestionCount}" Width="50" Height="25" Canvas.Left="407" Canvas.Top="384"/>
+        <TextBlock x:Name="QuestionCounter" Text="{Binding QuestionCount}" Width="50" Height="25" Canvas.Left="527" Canvas.Top="338"/>
+
+
+        <StackPanel Canvas.Left="10" Canvas.Top="68">
+            <TextBlock Text="Test Name:" Margin="0,10,0,0"/>
+            <TextBox x:Name="TestNameTextBox" Text="{Binding TestName, Mode=TwoWay}" Height="18" Width="110"/>
+            <TextBlock Text="Subject:" Margin="0,10,0,0"/>
+            <TextBox x:Name="SubjectTextBox" Text="{Binding Subject, Mode=TwoWay}" Height="17" Width="110"/>
+            <TextBlock Text="Teacher:" Margin="0,10,0,0"/>
+            <TextBox x:Name="TeacherTextBox" Text="{Binding TeacherName, Mode=TwoWay}" Height="17" Width="110"/>
+            <Label Content="Publish Date:"/>
+            <DatePicker x:Name="PublishDate"/>
+            <Label Content="Publish Time:"/>
+            <TextBox x:Name="PublishTime" PreviewTextInput="PublishTime_PreviewTextInput" Text="00:00" HorizontalAlignment="Left" />
+            <Button x:Name="PublishBtn" Command="{Binding SaveAndPublishCommand}" IsEnabled="{Binding IsPublishable}" Width="100" Height="26" Content="Save and Publish" Canvas.Left="32" Canvas.Top="373" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </StackPanel>
+
     </Canvas>
 </UserControl>

@@ -24,5 +24,7 @@ namespace ExamifyX.View
 		{
 			InitializeComponent();
 		}
+
+
 	}
 }

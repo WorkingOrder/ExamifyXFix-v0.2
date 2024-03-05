@@ -7,9 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <Canvas>
-        <StackPanel Canvas.Left="14" Canvas.Top="148">
+        <StackPanel Canvas.Left="13" Canvas.Top="22">
             <Button Width="120" Height="25" Content="Start Exam" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <Button Width="120" Height="25" Content="Back" Command="{Binding BackCommand}" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </StackPanel>
+        <DataGrid x:Name="dgTests" AutoGenerateColumns="False" Canvas.Left="167" Canvas.Top="26" Height="350" Width="550">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Test Name" Binding="{Binding TestName}" />
+                <DataGridTextColumn Header="Date" Binding="{Binding TestDate}" />
+                <DataGridTextColumn Header="Subject" Binding="{Binding TestSubject}"/>
+                <DataGridTextColumn Header="Teacher" Binding="{Binding TestTeacher}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="Good Luck! And Take Your Time!" Canvas.Left="36" Canvas.Top="286" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top"  Width="74" Height="84" TextWrapping="WrapWithOverflow"/>
     </Canvas>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using ExamifyX.ViewModel;
+﻿using ExamifyX.Model;
+using ExamifyX.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,24 +12,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ExamifyX.View
 {
 	/// <summary>
-	/// Interaction logic for TakeExamView.xaml
+	/// Interaction logic for StudentExamWindow.xaml
 	/// </summary>
-	public partial class TakeExamView : UserControl
+	public partial class StudentExamWindow : Window
 	{
-		public TakeExamView()
+		public StudentExamWindow(ExamItems exam)
 		{
-			var exam = new ExamItems();
-
 			InitializeComponent();
+
 			this.DataContext = new ExamsPanelViewModel(exam);
 		}
-
-
 	}
 }

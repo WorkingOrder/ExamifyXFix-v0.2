@@ -14,7 +14,7 @@ namespace ExamifyX.Model
 		public string TestName { get; set; }
 		public string Subject { get; set; }
 		public string TeacherName { get; set; }
-		public TimeSpan Duration { get; set; }
+		public string Duration { get; set; }
 		public DateTime PublishDate { get; set; } // Or separate Date and Time properties if needed
 												  // Other relevant properties like 'IsActive', 'IsPublished' etc.
 

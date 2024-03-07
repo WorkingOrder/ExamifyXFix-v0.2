@@ -57,7 +57,9 @@ namespace ExamifyX.ViewModel
 
 		private void SwitchToExamPanelView()
 		{
-			var examPanelViewModel = new ExamsPanelViewModel();
+			var exam = new ExamItems();
+
+			var examPanelViewModel = new ExamsPanelViewModel(exam);
 			examPanelViewModel.OnRequestBack += HandleNavigateBack;
 			CurrentView = new TakeExamView { DataContext = examPanelViewModel };
 		}

@@ -16,6 +16,7 @@ namespace ExamifyX.ViewModel
 {
 	public class ExamCreationViewModel : INotifyPropertyChanged
 	{
+		public Exam Exam { get; set; } = new Exam();
 		private ObservableCollection<Question> _questions { get; set; } = new ObservableCollection<Question>();
 
 		private readonly MyDbContext _context;
@@ -41,12 +42,18 @@ namespace ExamifyX.ViewModel
 			get => _publishTime;
 			set
 			{
-				string newValue = ModifyTimeInput(value);
-				if (_publishTime != value)
+				if (TimeSpan.TryParseExact(value, "hh\\:mm", null, out TimeSpan dummyOutput))
 				{
-					_publishTime = value;
+					if (_publishTime != value)
+					{
+						_publishTime = value;
+						OnPropertyChanged(nameof(PublishTime));
+						ValidatePublishability();
+					}
+				}
+				else
+				{
 					OnPropertyChanged(nameof(PublishTime));
-					ValidatePublishability();
 				}
 			}
 		}
@@ -70,6 +77,7 @@ namespace ExamifyX.ViewModel
 			{
 				_testName = value;
 				OnPropertyChanged(nameof(TestName));
+				ValidatePublishability();
 			}
 		}
 
@@ -81,6 +89,7 @@ namespace ExamifyX.ViewModel
 			{
 				_subject = value;
 				OnPropertyChanged(nameof(Subject));
+				ValidatePublishability();
 			}
 		}
 		private string _teacherName;
@@ -91,11 +100,12 @@ namespace ExamifyX.ViewModel
 			{
 				_teacherName = value;
 				OnPropertyChanged(nameof(TeacherName));
+				ValidatePublishability();
 			}
 		}
 
-		private TimeSpan _examDuration;
-		public TimeSpan ExamDuration
+		private string _examDuration;
+		public string ExamDuration
 		{
 			get => _examDuration;
 			set
@@ -104,6 +114,7 @@ namespace ExamifyX.ViewModel
 				{
 					_examDuration = value;
 					OnPropertyChanged(nameof(ExamDuration));
+					ValidatePublishability();
 				}
 			}
 
@@ -117,6 +128,7 @@ namespace ExamifyX.ViewModel
 				OnPropertyChanged(nameof(Questions));
 				OnPropertyChanged(nameof(CurrentQuestion));
 				OnPropertyChanged(nameof(QuestionCount));
+				ValidatePublishability();
 			}
 		}
 
@@ -130,6 +142,7 @@ namespace ExamifyX.ViewModel
 				OnPropertyChanged(nameof(CurrentQuestionIndex));
 				OnPropertyChanged(nameof(CurrentQuestion));
 				OnPropertyChanged(nameof(QuestionCount));
+				ValidatePublishability();
 			}
 		}
 
@@ -142,6 +155,10 @@ namespace ExamifyX.ViewModel
 
 		public ExamCreationViewModel()
 		{
+			var options = new DbContextOptionsBuilder<MyDbContext>().Options;
+			_context = new MyDbContext(options);
+			PublishDate = DateTime.Now;
+
 			SaveAndPublishCommand = new RelayCommand(async () =>
 			{
 				try
@@ -161,29 +178,6 @@ namespace ExamifyX.ViewModel
 			BackCommand = new RelayCommand(BackAction);
 		}
 
-		private string ModifyTimeInput(string input)
-		{
-			if (input.Length == 2 && !input.Contains(":") && int.TryParse(input, out int possibleHour))
-			{
-				if (possibleHour <= 23)
-				{
-					return input + ":";
-				}
-			}
-
-			if (!IsTextAllowed(input))
-			{
-				return _publishTime;
-			}
-			return input;
-		}
-
-		//Check what to do with this.
-		private bool IsPublishTimeValid()
-		{
-			return TimeSpan.TryParse(PublishTime, out TimeSpan result) && result.TotalHours < 24;
-		}
-
 		private void ValidatePublishability()
 		{
 			IsPublishable = Questions.Any() &&
@@ -191,7 +185,7 @@ namespace ExamifyX.ViewModel
 				!string.IsNullOrWhiteSpace(Subject) &&
 				!string.IsNullOrWhiteSpace(TeacherName) &&
 				!string.IsNullOrWhiteSpace(PublishTime) &&
-				ExamDuration != TimeSpan.Zero &&
+				!string.IsNullOrWhiteSpace(ExamDuration) &&
 				Questions.All(q => q.HasCorrectAnswer());
 
 
@@ -199,6 +193,11 @@ namespace ExamifyX.ViewModel
 
 		private async Task SaveAndPublish()
 		{
+			if (!IsPublishable) // Guard clause to prevent saving when not publishable.
+			{
+				MessageBox.Show("The exam is not ready to be published.", "Cannot Save", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return;
+			}
 			// Create a new Exam entity and populate it with data from the UI
 			var exam = new Exam
 			{
@@ -215,63 +214,6 @@ namespace ExamifyX.ViewModel
 
 			// Save changes to the database asynchronously
 			await _context.SaveChangesAsync();
-		}
-
-		private bool IsTextAllowed(string text)
-		{
-			// Check length constraint for the entire string.
-			if (text.Length > 5) return false;
-
-			// Find the index of the colon.
-			int colonIndex = text.IndexOf(':');
-			if (colonIndex > -1)
-			{
-				// Ensure only one colon exists and it's in an expected position.
-				if (colonIndex != 1 && colonIndex != 2) return false;
-				if (text.Count(f => f == ':') > 1) return false;
-				if (text.Length - colonIndex - 1 > 2) return false;
-
-				// Split the string into hour and minute components.
-				string[] parts = text.Split(':');
-				if (parts.Length == 2)
-				{
-					// Validate the hour part.
-					if (int.TryParse(parts[0], out int hour))
-					{
-						if (hour < 0 || hour > 23) return false;
-					}
-					else
-					{
-						// Hour part isn't a valid integer.
-						return false;
-					}
-
-					// Validate the minute part if it exists.
-					if (parts[1].Length > 0)
-					{
-						if (int.TryParse(parts[1], out int minute))
-						{
-							if (minute < 0 || minute > 59) return false;
-						}
-						else
-						{
-							// Minute part isn't a valid integer.
-							return false;
-						}
-					}
-				}
-			}
-			else
-			{
-				// Handle case where the user hasn't typed a colon yet but the digits exceed the 24-hour range.
-				if (text.Length == 2 && int.TryParse(text, out int possibleHour))
-				{
-					if (possibleHour > 23) return false;
-				}
-			}
-
-			// If no colon is present yet, ensure all characters are digits.
-			return text.Replace(":", "").All(char.IsDigit);
 		}
 
 		private bool CanGoToPreviousQuestion()

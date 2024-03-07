@@ -75,21 +75,9 @@ namespace ExamifyX.ViewModel
 			var examStatusViewModel = new ExamStatusViewModel();
 			var examStatusView = new ExamStatusView();
 			examStatusView.DataContext = examStatusViewModel;
-			examStatusViewModel.RequestOpenPublishExamWindow += HandleOpenPublishExamWindowRequest;
 			examStatusViewModel.RequestNavigateBack += HandleStatusNavigateBack;
 
 			CurrentView = examStatusView;
-		}
-
-		private void HandleOpenPublishExamWindowRequest()
-		{
-			Application.Current.Dispatcher.Invoke(() =>
-			{
-				var publishExamWindow = new PublishExamWindow();
-				var publishExamViewModel = new PublishExamViewModel();
-				publishExamWindow.DataContext = publishExamViewModel;
-				publishExamWindow.Show();
-			});
 		}
 
 		private void HandleStatusNavigateBack()

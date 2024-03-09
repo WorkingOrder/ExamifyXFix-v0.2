@@ -4,6 +4,7 @@ using ExamifyX.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExamifyX.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240308224250_RemoveCorrectAnswerIndex")]
+    partial class RemoveCorrectAnswerIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,6 +71,12 @@ namespace ExamifyX.Migrations
                     b.Property<int>("ExamId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ExamId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExamId2")
+                        .HasColumnType("int");
+
                     b.Property<string>("OptionA")
                         .HasColumnType("nvarchar(max)");
 
@@ -90,6 +99,8 @@ namespace ExamifyX.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ExamId");
+
+                    b.HasIndex("ExamId1");
 
                     b.ToTable("Questions");
                 });
@@ -171,10 +182,16 @@ namespace ExamifyX.Migrations
 
             modelBuilder.Entity("ExamifyX.Model.Question", b =>
                 {
-                    b.HasOne("ExamifyX.Model.Exam", "Exam")
+                    b.HasOne("ExamifyX.Model.Exam", null)
                         .WithMany("Questions")
                         .HasForeignKey("ExamId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ExamifyX.Model.Exam", "Exam")
+                        .WithMany()
+                        .HasForeignKey("ExamId1")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Exam");

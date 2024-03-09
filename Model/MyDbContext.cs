@@ -15,12 +15,12 @@ namespace ExamifyX.Model
 		public DbSet<Exam> Exams { get; set; }
 		public DbSet<Question> Questions { get; set; }
 
-        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
-        {
-            
-        }
+		public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
+		{
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		}
+
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ExamifyXDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
 		}
@@ -36,6 +36,12 @@ namespace ExamifyX.Model
 			modelBuilder.Entity<User>()
 				.HasIndex(e => e.Email)
 				.IsUnique();
+
+			modelBuilder.Entity<Exam>()
+			.HasMany(e => e.Questions)
+			.WithOne(q => q.Exam)
+			.HasForeignKey(q => q.ExamId)
+			.OnDelete(DeleteBehavior.Restrict);
 		}
 	}
 }

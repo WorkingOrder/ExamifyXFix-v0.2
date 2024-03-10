@@ -52,6 +52,8 @@ namespace ExamifyX.ViewModel
 			OptionIdentifiers[optionB] = "B";
 			OptionIdentifiers[optionC] = "C";
 			OptionIdentifiers[optionD] = "D";
+
+			OnPropertyChanged(nameof(Options));
 		}
 	}
 }

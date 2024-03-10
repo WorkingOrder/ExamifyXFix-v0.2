@@ -10,18 +10,18 @@
     <Window.Resources>
         <converter:OptionToBoolConverter x:Key="OptionToBoolConverter"/>
     </Window.Resources>
-    
+
     <Canvas>
         <Label Content="Duration:" Canvas.Left="611" Canvas.Top="15"/>
-        <TextBox x:Name="Timer" IsReadOnly="True" Text="{Binding ExamDuration, Mode=TwoWay}" Height="25" Width="100" Margin="672,15,28,410"/>
+        <TextBox x:Name="Timer" IsReadOnly="True" Text="{Binding ExamDuration}" Height="25" Width="100" Margin="672,15,28,410"/>
         <TextBox x:Name="QuestionBox" IsReadOnly="True" Text="{Binding CurrentQuestion.QuestionText}" Height="150" Width="700" Canvas.Left="50" Canvas.Top="67"/>
 
         <!-- Adjusted Radio Buttons for Options -->
         <StackPanel Canvas.Left="133" Canvas.Top="230">
-            <RadioButton Content="{Binding CurrentQuestion.OptionA}" IsChecked="{Binding CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=A}"/>
-            <RadioButton Content="{Binding CurrentQuestion.OptionB}" IsChecked="{Binding CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=B}"/>
-            <RadioButton Content="{Binding CurrentQuestion.OptionC}" IsChecked="{Binding CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=C}"/>
-            <RadioButton Content="{Binding CurrentQuestion.OptionD}" IsChecked="{Binding CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=D}"/>
+            <RadioButton Content="{Binding CurrentQuestion.Options[0]}" GroupName="AnswerOptions" IsChecked="{Binding Path=CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=0}"/>
+            <RadioButton Content="{Binding CurrentQuestion.Options[1]}" GroupName="AnswerOptions" IsChecked="{Binding Path=CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=1}"/>
+            <RadioButton Content="{Binding CurrentQuestion.Options[2]}" GroupName="AnswerOptions" IsChecked="{Binding Path=CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=2}"/>
+            <RadioButton Content="{Binding CurrentQuestion.Options[3]}" GroupName="AnswerOptions" IsChecked="{Binding Path=CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=3}"/>
         </StackPanel>
 
         <Button x:Name="FinishBtn" Command="{Binding SubmitExamCommand}" IsEnabled="{Binding CanSubmitExam}" Width="100" Height="26" Content="Finish" Canvas.Left="672" Canvas.Top="335" HorizontalAlignment="Left" VerticalAlignment="Top"/>

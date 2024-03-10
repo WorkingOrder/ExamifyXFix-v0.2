@@ -43,6 +43,7 @@ namespace ExamifyX.ViewModel
 			{
 				Exams.Add(new ExamItems
 				{
+					ExamId = exam.ExamId,
 					TestName = exam.TeacherName,
 					TestDate = exam.PublishDate,
 					Duration = exam.Duration,

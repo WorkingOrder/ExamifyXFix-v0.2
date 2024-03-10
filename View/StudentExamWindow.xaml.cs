@@ -21,11 +21,10 @@ namespace ExamifyX.View
 	/// </summary>
 	public partial class StudentExamWindow : Window
 	{
-		public StudentExamWindow(ExamItems exam)
+		public StudentExamWindow(int examId)
 		{
 			InitializeComponent();
-
-			this.DataContext = new ExamsPanelViewModel(exam);
+			this.DataContext = new StudentExamViewModel(examId);
 		}
 	}
 }

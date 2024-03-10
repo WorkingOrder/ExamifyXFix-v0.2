@@ -97,15 +97,15 @@ namespace ExamifyX.ViewModel
 
 		private void ExecuteStartExam()
 		{
-			if(SelectedExam != null)
-			{ 
-				OpenExamWindow(SelectedExam);
+			if (SelectedExam != null)
+			{
+				OpenExamWindow(SelectedExam.ExamId); // Ensure this passes the ExamId correctly
 			}
 		}
 
-		private void OpenExamWindow(ExamItems exam)
+		private void OpenExamWindow(int examId)
 		{
-			var examWindow = new StudentExamWindow(exam);
+			var examWindow = new StudentExamWindow(examId); // Ensure ExamId is correctly passed here
 			examWindow.Show();
 		}
 

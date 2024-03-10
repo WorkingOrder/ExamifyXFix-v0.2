@@ -62,6 +62,9 @@ namespace ExamifyX.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CorrectAnswerIndex")
+                        .HasColumnType("int");
+
                     b.Property<int>("CorrectOption")
                         .HasColumnType("int");
 

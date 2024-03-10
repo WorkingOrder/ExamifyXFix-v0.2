@@ -4,22 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamifyX.View"
+        xmlns:converter="clr-namespace:ExamifyX.Model"
         mc:Ignorable="d"
         Title="StudentExamWindow" Height="450" Width="800">
+    <Window.Resources>
+        <converter:OptionToBoolConverter x:Key="OptionToBoolConverter"/>
+    </Window.Resources>
+    
     <Canvas>
         <Label Content="Duration:" Canvas.Left="611" Canvas.Top="15"/>
-        <TextBox x:Name="Timer" Text="{Binding ExamDuration, Mode=TwoWay}" Height="25" Width="100" Margin="672,15,28,410"/>
-        <TextBox x:Name="QuestionBox" Text="{Binding CurrentQuestion.QuestionText}"  Height="150" Width="700" Canvas.Left="50" Canvas.Top="67"/>
-        <Button x:Name="FinishBtn" Command="{Binding BackCommand}" Width="100" Height="26" Content="Finish" Canvas.Left="672" Canvas.Top="335" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <RadioButton x:Name="RadioA"  Canvas.Left="113" Canvas.Top="249"/>
+        <TextBox x:Name="Timer" IsReadOnly="True" Text="{Binding ExamDuration, Mode=TwoWay}" Height="25" Width="100" Margin="672,15,28,410"/>
+        <TextBox x:Name="QuestionBox" IsReadOnly="True" Text="{Binding CurrentQuestion.QuestionText}" Height="150" Width="700" Canvas.Left="50" Canvas.Top="67"/>
 
-        <TextBox x:Name="OptionA" Width="250" Height="25" Text="{Binding CurrentQuestion.OptionA}" Canvas.Left="133" Canvas.Top="243"/>
-        <RadioButton x:Name="RadioB"  Canvas.Left="393" Canvas.Top="249" RenderTransformOrigin="0.511,0.571" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="OptionB" Width="250" Height="25" Text="{Binding CurrentQuestion.OptionB}" Canvas.Left="133" Canvas.Top="284"/>
-        <RadioButton x:Name="RadioC"  Canvas.Left="113" Canvas.Top="289" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="OptionC" Width="250" Height="25" Text="{Binding CurrentQuestion.OptionC}" Canvas.Left="413" Canvas.Top="243"/>
-        <RadioButton x:Name="RadioD" Canvas.Left="393" Canvas.Top="289" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="OptionD" Width="250" Height="25" Text="{Binding CurrentQuestion.OptionD}" Canvas.Left="413" Canvas.Top="284"/>
+        <!-- Adjusted Radio Buttons for Options -->
+        <StackPanel Canvas.Left="133" Canvas.Top="230">
+            <RadioButton Content="{Binding CurrentQuestion.OptionA}" IsChecked="{Binding CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=A}"/>
+            <RadioButton Content="{Binding CurrentQuestion.OptionB}" IsChecked="{Binding CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=B}"/>
+            <RadioButton Content="{Binding CurrentQuestion.OptionC}" IsChecked="{Binding CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=C}"/>
+            <RadioButton Content="{Binding CurrentQuestion.OptionD}" IsChecked="{Binding CurrentQuestion.SelectedOption, Converter={StaticResource OptionToBoolConverter}, ConverterParameter=D}"/>
+        </StackPanel>
+
+        <Button x:Name="FinishBtn" Command="{Binding SubmitExamCommand}" IsEnabled="{Binding CanSubmitExam}" Width="100" Height="26" Content="Finish" Canvas.Left="672" Canvas.Top="335" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button x:Name="PrevBtn" Command="{Binding PreviousQuestionCommand}" IsEnabled="{Binding CanGoToPreviousQuestion}" Width="75" Height="25" Content="Previous" Canvas.Left="318" Canvas.Top="335"/>
         <Button x:Name="NextBtn" Command="{Binding NextQuestionCommand}" IsEnabled="{Binding CanGoToNextQuestion}" Width="75" Height="25" Content="Next" Canvas.Left="398" Canvas.Top="335"/>
         <TextBlock x:Name="QuestionCounter" Text="{Binding QuestionCount}" Width="50" Height="25" Canvas.Left="488" Canvas.Top="335"/>

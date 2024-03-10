@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExamifyX.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20240308233840_FixQuestionForeignKey")]
-    partial class FixQuestionForeignKey
+    [Migration("20240309100044_ExamsandQuestionstables")]
+    partial class ExamsandQuestionstables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,9 @@ namespace ExamifyX.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CorrectAnswerIndex")
+                        .HasColumnType("int");
 
                     b.Property<int>("CorrectOption")
                         .HasColumnType("int");

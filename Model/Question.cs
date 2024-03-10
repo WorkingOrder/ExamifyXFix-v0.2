@@ -91,18 +91,15 @@ namespace ExamifyX.Model
 			}
 		}
 		public List<string> Options { get; set; }
-
 		public int ExamId { get; set; }
 
 		[ForeignKey("ExamId")]
-		public virtual Exam Exam { get; set; }
-
-
+		public Exam Exam { get; set; }
 
 		public Question()
-        {
-            Options = new List<string>();
-        }
+		{
+			Options = new List<string>();
+		}
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ExamifyX.Model
 {
+	//A class that saves users to database
 	public class User
 	{
 		public int Id { get; set; }

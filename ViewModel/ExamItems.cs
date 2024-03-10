@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ExamifyX.ViewModel
 {
+	//a class made for the items that are needed to me shown in an exam
 	public class ExamItems
 	{
+		public int ExamId { get; set; }
 		public string TestName { get; set; }
 		public DateTime TestDate { get; set; }
 		public string Duration { get; set; }

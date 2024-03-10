@@ -13,6 +13,7 @@ using System.Windows.Input;
 
 namespace ExamifyX.ViewModel
 {
+    //The view model that represents the main menu of the student and its functions
 	public class StudentMainMenuViewModel : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler? PropertyChanged;

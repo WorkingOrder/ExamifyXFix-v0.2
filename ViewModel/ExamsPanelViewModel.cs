@@ -14,6 +14,7 @@ using System.Windows.Input;
 
 namespace ExamifyX.ViewModel
 {
+	//A viewmodel for the structure and fuctions for the TakeExamView
 	public class ExamsPanelViewModel : INotifyPropertyChanged
 	{
 		public event Action OnRequestBack;
@@ -43,6 +44,7 @@ namespace ExamifyX.ViewModel
 			{
 				Exams.Add(new ExamItems
 				{
+					ExamId = exam.ExamId,
 					TestName = exam.TeacherName,
 					TestDate = exam.PublishDate,
 					Duration = exam.Duration,
@@ -97,15 +99,15 @@ namespace ExamifyX.ViewModel
 
 		private void ExecuteStartExam()
 		{
-			if(SelectedExam != null)
-			{ 
-				OpenExamWindow(SelectedExam);
+			if (SelectedExam != null)
+			{
+				OpenExamWindow(SelectedExam.ExamId); // Ensure this passes the ExamId correctly
 			}
 		}
 
-		private void OpenExamWindow(ExamItems exam)
+		private void OpenExamWindow(int examId)
 		{
-			var examWindow = new StudentExamWindow(exam);
+			var examWindow = new StudentExamWindow(examId); // Ensure ExamId is correctly passed here
 			examWindow.Show();
 		}
 

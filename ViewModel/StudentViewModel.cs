@@ -12,6 +12,8 @@ using System.Windows.Controls;
 
 namespace ExamifyX.ViewModel
 {
+	//The view model for the student view where it transitions between views
+	//and functions implemented inside it
 	public class StudentViewModel : INotifyPropertyChanged
 	{
 		public event EventHandler OnLogoutRequested;

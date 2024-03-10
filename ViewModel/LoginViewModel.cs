@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ExamifyX.ViewModel
 {
+	//A view model that sets up the structure and commands for the CredentialsWindow
 	public class LoginViewModel : INotifyPropertyChanged
 	{
 		private readonly IServiceProvider _serviceProvider;

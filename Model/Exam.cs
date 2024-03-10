@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExamifyX.Model
 {
+	//A class defining an exam(saved to database)
     public class Exam
     {
 		[Key]

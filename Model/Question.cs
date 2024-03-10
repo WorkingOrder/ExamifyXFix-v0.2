@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ExamifyX.Model
 {
-
+	//A class setting up the structure of questions(saved to database)
 
 	public enum Option
 	{
@@ -90,12 +91,15 @@ namespace ExamifyX.Model
 			}
 		}
 		public List<string> Options { get; set; }
-		public int CorrectAnswerIndex { get; set; }
+		public int ExamId { get; set; }
 
-        public Question()
-        {
-            Options = new List<string>();
-        }
+		[ForeignKey("ExamId")]
+		public Exam Exam { get; set; }
+
+		public Question()
+		{
+			Options = new List<string>();
+		}
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 

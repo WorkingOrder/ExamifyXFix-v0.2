@@ -1,6 +1,4 @@
-﻿using ExamifyX.Model;
-using ExamifyX.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,19 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ExamifyX.View
 {
 	/// <summary>
-	/// Interaction logic for StudentExamWindow.xaml
+	/// Interaction logic for StudentMainMenu.xaml
 	/// </summary>
-	public partial class StudentExamWindow : Window
+	public partial class StudentMainMenu : UserControl
 	{
-		public StudentExamWindow(int examId)
+		public StudentMainMenu(string name, string surname)
 		{
 			InitializeComponent();
-			this.DataContext = new StudentExamViewModel(examId);
+			GreetingLabel.Content = $"Welcome, {name} {surname}";
 		}
 	}
 }

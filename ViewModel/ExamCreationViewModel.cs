@@ -14,6 +14,7 @@ using System.Windows.Threading;
 
 namespace ExamifyX.ViewModel
 {
+	//A view model made for the structure of exam creation
 	public class ExamCreationViewModel : INotifyPropertyChanged
 	{
 		public Exam Exam { get; set; } = new Exam();

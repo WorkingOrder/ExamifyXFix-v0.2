@@ -13,6 +13,7 @@ using System.Windows.Input;
 
 namespace ExamifyX.ViewModel
 {
+	//The view model that represents the registration window
     public enum UserRole
 	{
 		Unselected = 0,

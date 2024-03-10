@@ -11,7 +11,7 @@
             <Button Width="120" Height="25" Content="Start Exam" Command="{Binding StartExamCommand}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <Button Width="120" Height="25" Content="Back" Command="{Binding BackCommand}" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </StackPanel>
-        <DataGrid x:Name="dgTests" ItemsSource="{Binding Exams}" SelectedItem="{Binding SelectedExam, Mode=TwoWay}" AutoGenerateColumns="False" Canvas.Left="167" Canvas.Top="26" Height="350" Width="550">
+        <DataGrid x:Name="dgTests" ItemsSource="{Binding Exams}" SelectedItem="{Binding SelectedExam}" AutoGenerateColumns="False" Canvas.Left="167" Canvas.Top="26" Height="350" Width="550">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Test Name" Binding="{Binding TestName}" />
                 <DataGridTextColumn Header="Date" Binding="{Binding TestDate}" />

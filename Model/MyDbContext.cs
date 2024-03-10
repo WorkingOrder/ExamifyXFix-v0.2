@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExamifyX.Model
 {
+	//the setup for the database
 	public class MyDbContext : DbContext
 	{
 		public DbSet<User> Users { get; set; }

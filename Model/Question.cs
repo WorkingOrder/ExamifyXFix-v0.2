@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ExamifyX.Model
 {
-
+	//A class setting up the structure of questions(saved to database)
 
 	public enum Option
 	{

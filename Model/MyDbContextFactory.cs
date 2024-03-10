@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ExamifyX.Model
 {
+	//this class was used to fix an issue with how the connection to the database was handled
 	public class MyDbContextFactory : IDesignTimeDbContextFactory<MyDbContext>
 	{
 		public MyDbContext CreateDbContext(string[] args)

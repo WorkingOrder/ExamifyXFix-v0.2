@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ExamifyX.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             d:DesignHeight="450" d:DesignWidth="800" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800" Background="White">
     <Canvas>
         <StackPanel Canvas.Left="13" Canvas.Top="22">
             <Button Width="120" Height="25" Content="Start Exam" Command="{Binding StartExamCommand}" HorizontalAlignment="Center" VerticalAlignment="Top"/>

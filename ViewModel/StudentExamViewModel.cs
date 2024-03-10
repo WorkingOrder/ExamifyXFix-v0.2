@@ -14,6 +14,7 @@ using System.Windows.Input;
 
 namespace ExamifyX.ViewModel
 {
+	//The view model that represents the structure of the exam for the student
 	public class StudentExamViewModel : INotifyPropertyChanged
 	{
 		private readonly MyDbContext _context;

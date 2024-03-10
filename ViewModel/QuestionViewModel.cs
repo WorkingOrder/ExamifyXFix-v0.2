@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ExamifyX.ViewModel
 {
+	//A view model that represents the structure of the questions when the students takes them
 	public class QuestionViewModel : INotifyPropertyChanged
 	{
 		public string QuestionText { get; set; }

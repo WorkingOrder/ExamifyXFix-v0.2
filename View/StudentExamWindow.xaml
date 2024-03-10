@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ExamifyX.View"
         xmlns:converter="clr-namespace:ExamifyX.Model"
         mc:Ignorable="d"
-        Title="StudentExamWindow" Height="450" Width="800">
+        Title="StudentExamWindow" MinHeight="450" MinWidth="800" MaxHeight="450" MaxWidth="800">
     <Window.Resources>
         <converter:OptionToBoolConverter x:Key="OptionToBoolConverter"/>
     </Window.Resources>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExamifyX.Model
 {
+	//this class hashes the password in the database and decrypts it upon log in
 	public static class PasswordHasher
 	{
 		public static byte[] GenerateSalt(int size)

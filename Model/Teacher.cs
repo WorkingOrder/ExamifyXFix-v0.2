@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExamifyX.Model
 {
+	//A class made for Depicting a teacher(saved to database)
 	public class Teacher
 	{
 		public int TeacherId { get; set; }

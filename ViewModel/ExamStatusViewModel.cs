@@ -14,6 +14,7 @@ using System.Windows.Input;
 
 namespace ExamifyX.ViewModel
 {
+	//A view Model for the ExamStatus view which is basically a data grid that shows uploaded exams
     public class ExamStatusViewModel : INotifyPropertyChanged
     {
 

@@ -14,6 +14,7 @@ using System.Windows.Input;
 
 namespace ExamifyX.ViewModel
 {
+	//A viewmodel for the structure and fuctions for the TakeExamView
 	public class ExamsPanelViewModel : INotifyPropertyChanged
 	{
 		public event Action OnRequestBack;

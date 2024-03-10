@@ -8,6 +8,8 @@ using System.Windows.Data;
 
 namespace ExamifyX.Model
 {
+	//this class was made to make the answer options in the exam work, almost the same idea as
+	//the EnumBooleanConverter class
 	public class OptionToBoolConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

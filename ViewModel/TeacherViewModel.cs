@@ -16,6 +16,7 @@ using ExamifyX.Model;
 
 namespace ExamifyX.ViewModel
 {
+	//The view model for the Teacher Window that it shows initially on loading up
 	public class TeacherViewModel : INotifyPropertyChanged
 	{
 

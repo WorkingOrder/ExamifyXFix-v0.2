@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ExamifyX.View"
         xmlns:converter="clr-namespace:ExamifyX.Model"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="650" Width="280" WindowStartupLocation="CenterOwner">
+        Title="RegistrationWindow" MinHeight="650" MinWidth="280" MaxHeight="650" MaxWidth="280" WindowStartupLocation="CenterOwner">
     <Window.Resources>
         <converter:UserToBoolConv x:Key="UserToBoolConv"/>
     </Window.Resources>
